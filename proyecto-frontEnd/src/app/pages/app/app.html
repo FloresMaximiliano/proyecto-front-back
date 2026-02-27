@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Lista de Productos</h1>
+  
+  @if (listaProductos.length > 0) {
+    <div class="productos-grid">
+      @for (producto of listaProductos; track producto.id) {
+        <div class="producto-card">
+          <h3>{{ producto.nombre }}</h3>
+          <p>{{ producto.descripcion }}</p>
+          <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+          <p><strong>Stock:</strong> {{ producto.stock }}</p>
+          <p><strong>Categoría:</strong> {{ producto.categoria }}</p>
+        </div>
+      }
+    </div>
+  } @else {
+    <p>No hay productos disponibles</p>
+  }
+</div>
