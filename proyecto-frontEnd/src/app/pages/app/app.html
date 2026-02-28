@@ -1,4 +1,15 @@
 <div class="container">
+  <div style="border: 1px solid #ccc; padding: 20px; margin-bottom: 20px;">
+    <h3>Agregar Nuevo Producto</h3>
+    
+    <input type="text" placeholder="Nombre (Ej: Teclado)" [(ngModel)]="productoFormulario.nombre">
+    <input type="text" placeholder="Descripción" [(ngModel)]="productoFormulario.descripcion">
+    <input type="number" placeholder="Precio" [(ngModel)]="productoFormulario.precio">
+    <input type="number" placeholder="Stock" [(ngModel)]="productoFormulario.stock">
+    <input type="text" placeholder="Categoría" [(ngModel)]="productoFormulario.categoria">
+
+    <button (click)="guardarNuevoProducto()" class="bg-blue-500 hover:bg-blue-800 text-white font-semibold py-2 py-4 rounded shadow hover:shadow-lg transition-all duration-200 ease-in-out ">Guardar Producto</button>
+  </div>
   <h1>Lista de Productos</h1>
   
   @if (listaProductos.length > 0) {

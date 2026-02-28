@@ -5,7 +5,6 @@ import com.example.primerapirest.modelos.Producto;
 import com.example.primerapirest.repositories.productoRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,8 +12,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/producto")
-@CrossOrigin(origins = "http://localhost:4200")
-public class productoController {
+public class ProductoController {
+
+
 
     @Autowired
     private productoRepositories repository;
@@ -80,4 +80,8 @@ public class productoController {
             return ResponseEntity.notFound().build();
         }
     }
+
+
+
+
 }
