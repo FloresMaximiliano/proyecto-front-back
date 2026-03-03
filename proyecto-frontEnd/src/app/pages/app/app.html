@@ -1,6 +1,7 @@
 <div class="container">
+  
   <div style="border: 1px solid #ccc; padding: 20px; margin-bottom: 20px;">
-    <h3>Agregar Nuevo Producto</h3>
+    <h3>{{ idEditando ? 'Editar Producto' : 'Agregar Nuevo Producto' }}</h3>
     
     <input type="text" placeholder="Nombre (Ej: Teclado)" [(ngModel)]="productoFormulario.nombre">
     <input type="text" placeholder="Descripción" [(ngModel)]="productoFormulario.descripcion">
@@ -8,21 +9,41 @@
     <input type="number" placeholder="Stock" [(ngModel)]="productoFormulario.stock">
     <input type="text" placeholder="Categoría" [(ngModel)]="productoFormulario.categoria">
 
-    <button (click)="guardarNuevoProducto()" class="bg-blue-500 hover:bg-blue-800 text-white font-semibold py-2 py-4 rounded shadow hover:shadow-lg transition-all duration-200 ease-in-out ">Guardar Producto</button>
+    <button (click)="guardarProducto()" class="bg-blue-500 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded shadow">
+      {{ idEditando ? 'Actualizar Cambios' : 'Guardar Producto' }}
+    </button>
+
+    @if (idEditando !== null ) {
+      <button (click)="limpiarFormulario()" class="bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded shadow ml-2">
+        Cancelar
+      </button>
+    }
   </div>
+
   <h1>Lista de Productos</h1>
   
   @if (listaProductos.length > 0) {
     <div class="productos-grid">
+      
       @for (producto of listaProductos; track producto.id) {
-        <div class="producto-card">
+        <div class="producto-card" style="border: 1px solid #ccc; padding: 15px; margin: 10px; border-radius: 8px;">
           <h3>{{ producto.nombre }}</h3>
           <p>{{ producto.descripcion }}</p>
           <p><strong>Precio:</strong> ${{ producto.precio }}</p>
           <p><strong>Stock:</strong> {{ producto.stock }}</p>
           <p><strong>Categoría:</strong> {{ producto.categoria }}</p>
+          
+          <button (click)="cargarDatosParaEditar(producto)" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded mt-2 mr-2">
+            Editar
+          </button>
+          
+          <button (click)="eliminarProducto(producto.id!)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2">
+            Eliminar
+          </button>
+          
         </div>
       }
+      
     </div>
   } @else {
     <p>No hay productos disponibles</p>
